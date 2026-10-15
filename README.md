@@ -176,9 +176,5 @@ public-document ownership and provenance are documented in [third-party notices]
 
 ## Development and next steps
 
-Developed with Codex and ECC assistance for architecture, implementation, testing and review.
-ECC supports development; it is not an agent team running inside FreightLens. This is a
-portfolio prototype, not a system currently operating a transport company's business.
-
 Next steps focus on a broader held-out evaluation set, OCR and approved business integrations.
 [Roadmap](docs/roadmap.md) · [Repository upload instructions](docs/publishing.md)

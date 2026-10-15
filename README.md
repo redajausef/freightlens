@@ -1,4 +1,4 @@
-# FreightLens
+# FreightLens: AI Freight Document Review
 
 [![Checks](https://github.com/redajausef/freightlens/actions/workflows/ci.yml/badge.svg)](https://github.com/redajausef/freightlens/actions/workflows/ci.yml)
 

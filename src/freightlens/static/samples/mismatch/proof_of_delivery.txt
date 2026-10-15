@@ -1,0 +1,10 @@
+SYNTHETIC PORTFOLIO EXAMPLE - NO REAL SHIPMENT
+
+PROOF OF DELIVERY
+Shipment Reference: FL-1002
+Carrier: Atlas Demo Transport
+Pickup Location: Dallas, TX
+Delivery Location: Houston, TX
+Delivery Date: 2026-10-13
+Receiver: Demo Warehouse Employee
+Signature: SAMPLE ONLY - NOT A REAL SIGNATURE

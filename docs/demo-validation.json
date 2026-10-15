@@ -1,0 +1,52 @@
+{
+  "verified_on": "2026-10-15",
+  "provider": "demo",
+  "pipeline_revision": "2026-10-15.2",
+  "input_format": "Actual synthetic PDF files through the multipart upload API",
+  "external_model_calls": 0,
+  "ai_accuracy_claim": false,
+  "results": [
+    {
+      "scenario": "clean",
+      "pdf_files": [
+        "samples/clean/invoice.pdf",
+        "samples/clean/proof_of_delivery.pdf",
+        "samples/clean/rate_confirmation.pdf"
+      ],
+      "status_before_approval": "ready_for_review",
+      "finding_codes": [],
+      "export_before_approval_http": 409,
+      "approval_http": 200,
+      "expectations_passed": true
+    },
+    {
+      "scenario": "mismatch",
+      "pdf_files": [
+        "samples/mismatch/invoice.pdf",
+        "samples/mismatch/proof_of_delivery.pdf",
+        "samples/mismatch/rate_confirmation.pdf"
+      ],
+      "status_before_approval": "needs_review",
+      "finding_codes": [
+        "amount_mismatch"
+      ],
+      "export_before_approval_http": 409,
+      "approval_http": 409,
+      "expectations_passed": true
+    },
+    {
+      "scenario": "missing",
+      "pdf_files": [
+        "samples/missing/invoice.pdf",
+        "samples/missing/rate_confirmation.pdf"
+      ],
+      "status_before_approval": "needs_review",
+      "finding_codes": [
+        "missing_document"
+      ],
+      "export_before_approval_http": 409,
+      "approval_http": 409,
+      "expectations_passed": true
+    }
+  ]
+}

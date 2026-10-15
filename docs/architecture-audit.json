@@ -1,0 +1,223 @@
+{
+  "schema_version": "ecc.agent-architecture-audit.report.v1",
+  "audit_date": "2026-10-15",
+  "pipeline_revision": "2026-10-15.2",
+  "executive_verdict": {
+    "overall_health": "suitable_local_foundation_after_targeted_fixes",
+    "primary_failure_mode": "Reproduced grounding, transport and stale-result defects are fixed; live model quality and production resource isolation remain unverified.",
+    "most_urgent_fix": "Next evidence: live synthetic Kimi evaluation. Before untrusted business use: hard PDF parser resource isolation and deployment controls."
+  },
+  "scope": {
+    "target_name": "FreightLens single-user loopback portfolio prototype",
+    "model_stack": [
+      "Deterministic demo parser",
+      "Optional NVIDIA Kimi adapter; no live account-key test"
+    ],
+    "layers_to_audit": [
+      "System prompt",
+      "Answer shaping",
+      "Rendering",
+      "Retry behavior",
+      "Persistence"
+    ],
+    "not_implemented": [
+      "Agent tools",
+      "Session or long-term model memory",
+      "Distillation/recall",
+      "Autonomous repair",
+      "RAG",
+      "Business integrations"
+    ],
+    "method": "ECC architect, Python/provider and security guidance; code review, synthetic reproductions and regression tests. ECC is development support, not a runtime dependency."
+  },
+  "findings": [
+    {
+      "id": "A1",
+      "severity": "high",
+      "title": "Negative source amount accepted as positive",
+      "source_layer": "Answer shaping",
+      "mechanism": "Unsigned numeric substring discarded negative/accounting context.",
+      "root_cause": "Monetary candidates did not preserve signs and parentheses.",
+      "evidence_refs": [
+        "src/freightlens/extraction.py:53",
+        "tests/test_audit_regressions.py:29",
+        "tests/test_audit_regressions.py:161"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Match complete monetary tokens and reject negative/accounting tokens as positive evidence.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A2",
+      "severity": "high",
+      "title": "Truncated identifier or currency accepted",
+      "source_layer": "Answer shaping",
+      "mechanism": "Substring grounding accepted FL-1 from FL-10 or USD from USDT.",
+      "root_cause": "Field-specific value boundaries were absent.",
+      "evidence_refs": [
+        "src/freightlens/extraction.py:75",
+        "tests/test_audit_regressions.py:48"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Require complete values with identifier-aware punctuation boundaries.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A3",
+      "severity": "medium",
+      "title": "Unrelated numeric token discarded correct amount",
+      "source_layer": "Answer shaping",
+      "mechanism": "A parse error in an earlier candidate aborted the complete search.",
+      "root_cause": "Exception handling surrounded the candidate loop.",
+      "evidence_refs": [
+        "src/freightlens/extraction.py:53",
+        "tests/test_audit_regressions.py:64"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Parse candidates independently and skip invalid candidates only.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A4",
+      "severity": "medium",
+      "title": "Malformed provider envelope caused an uncaught exception",
+      "source_layer": "Answer shaping / transport",
+      "mechanism": "Successful HTTP responses with choices=[null] or a non-list choices field escaped controlled errors.",
+      "root_cause": "Envelope shape was assumed before attribute access.",
+      "evidence_refs": [
+        "src/freightlens/extraction.py:206",
+        "tests/test_audit_regressions.py:82"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Validate envelope/list/choice/message types before reading model output.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A5",
+      "severity": "medium",
+      "title": "Impossible within-document chronology and non-calendar formats passed",
+      "source_layer": "Answer shaping / business rules",
+      "mechanism": "Only rate pickup versus POD delivery was compared; fromisoformat also accepted compact/week dates.",
+      "root_cause": "Missing per-document chronology and explicit calendar-format checks.",
+      "evidence_refs": [
+        "src/freightlens/rules.py:16",
+        "src/freightlens/rules.py:69",
+        "tests/test_audit_regressions.py:93",
+        "tests/test_audit_regressions.py:105",
+        "tests/test_audit_regressions.py:116"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Enforce YYYY-MM-DD and per-document chronology; allow actual delivery later than planned.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A6",
+      "severity": "medium",
+      "title": "Missing Content-Length bypassed pre-parser upload budget",
+      "source_layer": "Transport / resource boundary",
+      "mechanism": "Multipart data was spooled before endpoint file-size checks.",
+      "root_cause": "Total request limit relied on an optional header.",
+      "evidence_refs": [
+        "src/freightlens/middleware.py:12",
+        "tests/test_audit_regressions.py:127",
+        "tests/test_policy_and_limits.py:31"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Count actual ASGI request bytes before parsing and preserve partial-file cleanup.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A7",
+      "severity": "medium",
+      "title": "Saved reviews outlived validation revisions without provenance",
+      "source_layer": "Persistence",
+      "mechanism": "Early packet reuse could return findings/approval made by an older validation policy.",
+      "root_cause": "Fingerprint and saved review omitted policy revisions and configured model provenance.",
+      "evidence_refs": [
+        "src/freightlens/service.py:29",
+        "src/freightlens/service.py:61",
+        "src/freightlens/models.py:75",
+        "src/freightlens/api.py:82",
+        "tests/test_audit_regressions.py:146",
+        "tests/test_policy_and_limits.py:13"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Version fingerprints and processing metadata; retain old records but require rechecking before approval/export.",
+      "status": "fixed",
+      "reproduction": "reproduced using synthetic data/mocked provider"
+    },
+    {
+      "id": "A8",
+      "severity": "medium",
+      "title": "PDF expansion lacks a hard CPU or memory boundary",
+      "source_layer": "Transport / ingestion",
+      "mechanism": "extract_text can expand/process compressed page content before the final extracted-text budget check.",
+      "root_cause": "Parsing runs in-process without time/memory limits.",
+      "evidence_refs": [
+        "src/freightlens/ingestion.py:39",
+        "src/freightlens/ingestion.py:46"
+      ],
+      "confidence": 1.0,
+      "recommended_fix": "Isolate parsing with enforced resource/time limits before untrusted business use.",
+      "status": "deferred_production_requirement",
+      "reproduction": "source inspection only; no resource exhaustion stress test"
+    }
+  ],
+  "ordered_fix_plan": [
+    {
+      "order": 1,
+      "goal": "Repair evidence grounding",
+      "why_now": "Wrong positive amounts and partial identifiers could appear clean",
+      "expected_effect": "Unsupported extractions become blocking findings",
+      "status": "complete"
+    },
+    {
+      "order": 2,
+      "goal": "Validate provider envelopes and document chronology",
+      "why_now": "Malformed outputs and impossible source dates bypassed expected handling",
+      "expected_effect": "Controlled errors and deterministic chronology findings",
+      "status": "complete"
+    },
+    {
+      "order": 3,
+      "goal": "Enforce actual upload bytes and cleanup",
+      "why_now": "Optional Content-Length was insufficient",
+      "expected_effect": "Early 413 and closed partial temp files",
+      "status": "complete"
+    },
+    {
+      "order": 4,
+      "goal": "Version saved decisions and require current-policy recheck",
+      "why_now": "Old results could bypass fixes",
+      "expected_effect": "Fresh attributable reviews without overwriting history",
+      "status": "complete"
+    },
+    {
+      "order": 5,
+      "goal": "Evaluate live Kimi on labeled synthetic packets",
+      "why_now": "Mocks do not establish model accuracy",
+      "expected_effect": "Measured extraction quality, latency and failures",
+      "status": "pending"
+    },
+    {
+      "order": 6,
+      "goal": "Harden parsing and hosted business operations",
+      "why_now": "Current controls only support a local prototype",
+      "expected_effect": "Resource isolation, authenticated identities, retention and monitoring evidence",
+      "status": "pending_before_production"
+    }
+  ],
+  "verification": {
+    "pytest_passed": 76,
+    "application_line_coverage_percent": 97.87,
+    "pyright": "0 errors, 0 warnings",
+    "live_model_verified": false,
+    "production_readiness_established": false
+  }
+}

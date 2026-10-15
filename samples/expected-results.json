@@ -1,0 +1,43 @@
+{
+  "purpose": "Controlled synthetic PDF workflow expectations; not a live AI accuracy benchmark",
+  "provider": "demo",
+  "scenarios": [
+    {
+      "folder": "clean",
+      "shipment_reference": "FL-1001",
+      "documents": 3,
+      "agreed_amount": "2000.00",
+      "invoiced_amount": "2000.00",
+      "currency": "USD",
+      "expected_status_before_employee_approval": "ready_for_review",
+      "expected_issue_codes": [],
+      "export_requires_employee_approval": true
+    },
+    {
+      "folder": "mismatch",
+      "shipment_reference": "FL-1002",
+      "documents": 3,
+      "agreed_amount": "2000.00",
+      "invoiced_amount": "2300.00",
+      "difference": "300.00",
+      "currency": "USD",
+      "expected_status_before_employee_approval": "needs_review",
+      "expected_issue_codes": ["amount_mismatch"],
+      "approval_blocked": true,
+      "export_blocked": true
+    },
+    {
+      "folder": "missing",
+      "shipment_reference": "FL-1003",
+      "documents": 2,
+      "missing_kind": "proof_of_delivery",
+      "agreed_amount": "2000.00",
+      "invoiced_amount": "2000.00",
+      "currency": "USD",
+      "expected_status_before_employee_approval": "needs_review",
+      "expected_issue_codes": ["missing_document"],
+      "approval_blocked": true,
+      "export_blocked": true
+    }
+  ]
+}

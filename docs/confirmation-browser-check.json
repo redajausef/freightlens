@@ -1,0 +1,18 @@
+{
+  "fixture": "Fictional text documents on an isolated local demo server",
+  "new_model_calls": 0,
+  "saved_confirmations": 3,
+  "original_ai_date_preserved": true,
+  "explicit_approval_required": true,
+  "approved_record_locked": true,
+  "invalid_currency_rejected_with_form_retained": true,
+  "page_script_errors": 0,
+  "expected_http_422_tested": true,
+  "widths_checked": [
+    1440,
+    768,
+    390
+  ],
+  "older_policy_recheck_ui_passed": true,
+  "real_public_review_employee_values_changed": false
+}

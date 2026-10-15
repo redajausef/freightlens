@@ -1,0 +1,11 @@
+SYNTHETIC PORTFOLIO EXAMPLE - NO REAL SHIPMENT
+
+RATE CONFIRMATION
+Shipment Reference: FL-1003
+Carrier: Atlas Demo Transport
+Pickup Location: Dallas, TX
+Delivery Location: Houston, TX
+Pickup Date: 2026-10-12
+Delivery Date: 2026-10-13
+Amount: 2,000.00
+Currency: USD

@@ -1,0 +1,57 @@
+flowchart TD
+    subgraph DEV["ECC development and audit workflow — outside runtime"]
+        ARCH["Architecture reviewer: boundaries and contracts"]
+        PY["Python / provider reviewer: grounding, errors, tests"]
+        SEC["Security reviewer: uploads, data, approval gates"]
+        NOTE["Development guidance only; ECC is not a runtime dependency"]
+    end
+
+    subgraph LOCAL["Local runtime — browser + one modular FastAPI app + SQLite"]
+        UI["Employee workbench: rate confirmation, invoice, proof of delivery"]
+        API["ASGI streamed-body size limit; Host / Origin checks; typed API routes"]
+        SVC["Application service: packet fingerprint and processing revisions"]
+        ING["Bounded PDF / UTF-8 ingestion; numbered page text; reject unreadable inputs"]
+        EX["Extraction adapter: one provider per review; no model tools"]
+        DEMO["Offline labeled-field demo parser"]
+        CONTRACT["Pydantic response schema + signed money / whole-token source evidence"]
+        RULES["Deterministic Decimal / date rules; missing fields and discrepancies"]
+        DB[("SQLite: page text, fields, findings, notes, audit, hashes and provenance; no original PDFs")]
+        GATE{"Employee inspects evidence; no findings and current policy?"}
+        APPROVE["Explicit employee approval: name + review note"]
+        EXPORT["Approved JSON download; current processing policy required"]
+        BLOCK["Approval and export blocked; old policy records remain readable"]
+        CORRECT["Correct or re-upload packet under current policy; new review preserves history"]
+        PROV["Provenance: provider, model, pipeline, extraction and rules revision; included in fingerprint / stored metadata"]
+        UI --> API --> SVC --> ING --> EX
+        UI --> CONFIRM["Employee currency/date confirmation: source quote, full value, reviewer and reason"]
+        CONFIRM -->|"retain original AI fields; append history; rerun all checks"| RULES
+        EX -->|"demo mode"| DEMO --> CONTRACT
+        CONTRACT --> RULES --> DB --> GATE
+        GATE -->|"yes"| APPROVE --> EXPORT
+        GATE -->|"findings or outdated policy"| BLOCK --> CORRECT --> UI
+        SVC -.-> PROV -.-> DB
+    end
+
+    KIMI["Optional external NVIDIA / Kimi API: adapter implemented; live verification pending; mocked contract tests only"]
+    GEMINI["Google Gemini API: small public-PDF evaluation recorded; guide ambiguity remains unresolved"]
+    EX -.->|"configured Gemini mode: document text leaves device"| GEMINI
+    GEMINI -.->|"response validated; no silent fallback"| CONTRACT
+    EX -.->|"configured Kimi mode: document text leaves device"| KIMI
+    KIMI -.->|"response validated; no silent fallback"| CONTRACT
+
+    subgraph FUTURE["Next milestones — future work only"]
+        LIVE["Broader accuracy and document-scope evaluation"]
+        OCR["OCR"]
+        HOST["Authentication + worker jobs"]
+        INT["Approved business integrations"]
+    end
+    SCOPE["Current scope: no automatic emails / payments, RAG, memory, autonomous agents, model tools or webhooks"]
+
+    classDef active fill:#ffffff,stroke:#dedfd8,color:#252b2a;
+    classDef attention fill:#faf0e9,stroke:#b94b2b,color:#252b2a;
+    classDef safe fill:#eef4eb,stroke:#819577,color:#252b2a;
+    classDef future fill:#f5f4f0,stroke:#dedfd8,color:#69706b;
+    class UI,API,SVC,ING,EX,DEMO,CONTRACT,RULES,DB,PROV active;
+    class BLOCK,CORRECT,KIMI,GEMINI attention;
+    class APPROVE,EXPORT safe;
+    class ARCH,PY,SEC,NOTE,LIVE,OCR,HOST,INT,SCOPE future;

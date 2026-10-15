@@ -1,0 +1,32 @@
+{
+  "contract": "FreightLens local operations workbench. At1440x1000 show compact header, intake and primary queue together; at390x844 stack the layout and contain wide tables. Findings precede evidence and employee decisions. Status filters/search, keyboard orientation, truthful provider labeling, usable state feedback and no automatic approval are required. Full contract: docs/design.md.",
+  "targetViewports": ["1440x1000", "390x844"],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Browser verified first keyboard stop is Skip to workspace, Enter focuses main, opening a packet focuses its heading, source buttons expose aria-pressed, blocked approval is disabled and described, and reduced motion sets automatic scrolling. Interactive controls use44px minimum height. Small heading/placeholder/footer/count text colors were adjusted to calculated contrast ratios4.65,4.64,4.53,4.51; evidence links5.75. This is focused keyboard/manual inspection, not a screen-reader certification."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Rendered at1440x1000,1024x900 and390x844. documentElement.scrollWidth equals innerWidth at each viewport, including selected review. A browser-only fixture stressed180-character references, long carrier/filename/quotes; mobile title and quote did not clip. Wide data tables scroll inside labelled focusable regions."
+  },
+  "contentStates": {
+    "loading": {"status":"pass","evidence":"Delayed list response by2500ms in the browser; stable queue loading message shown and empty state remained hidden. Mutation commands expose pending aria-disabled state; progress is announced as a status."},
+    "empty": {"status":"pass","evidence":"Controlled empty list displays first-review guidance; actual status/search filtering with a nonexistent reference displays No matching reviews and functional Clear filters."},
+    "error": {"status":"pass","evidence":"Controlled503 response displayed actionable service feedback and Retry. Removing the fixture and clicking Retry restored the real queue. Blank upload also displayed a useful validation error."},
+    "partial": {"status":"pass","evidence":"Actual synthetic FL-1003 packet contains two documents. Its available fields and evidence remain visible, missing delivery record is flagged, and approval stays blocked."},
+    "success": {"status":"pass","evidence":"Uploaded the three actual synthetic clean PDFs through the interface, approved with a name/note, observed approved download link and disabled repeated approval. Search and status filters and note isolation also checked."},
+    "permission": {"status":"not-applicable","reason":"This loopback-only single-user prototype has no authentication/role permission or consent dialog. Workflow approval restrictions were verified in partial/success states. Provider keys are configured locally outside the interface; public access control remains future work."}
+  },
+  "renderedEvidence": [
+    {"viewport":"1440x1000","artifact":"desktop.png","observation":"Final desktop queue and compact intake; real saved synthetic packets, no hero or sidebar."},
+    {"viewport":"390x844","artifact":"mobile.png","observation":"Final mobile full-page capture: stacked layout, contained horizontal table scrolling, page width390px."},
+    {"viewport":"390x844","artifact":"mobile-review.png","observation":"Findings, evidence and employee decision stack correctly; approval is blocked for mismatch."},
+    {"viewport":"1440x1000","artifact":"review-detail.png","observation":"Desktop review pairs extracted fields and source evidence, with decision and secondary draft below."},
+    {"viewport":"1440x1000","artifact":"loading.png","observation":"Controlled delayed list response; queue shows loading rather than empty."},
+    {"viewport":"1440x1000","artifact":"empty.png","observation":"Controlled empty list; concrete next action and truthful zero counts."},
+    {"viewport":"1440x1000","artifact":"error.png","observation":"Controlled503 response; focused alert plus Retry connection control."},
+    {"viewport":"1440x1000","artifact":"partial.png","observation":"Two-document synthetic shipment with missing delivery record and blocked approval."},
+    {"viewport":"1440x1000","artifact":"success.png","observation":"Synthetic PDFs approved through the interface; download becomes available."},
+    {"viewport":"390x844","artifact":"long-content.png","observation":"Browser-only long-reference/carrier/filename/quote layout fixture; no root overflow or title/quote clipping."}
+  ]
+}

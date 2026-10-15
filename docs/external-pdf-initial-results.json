@@ -1,0 +1,239 @@
+{
+  "provider": "gemini",
+  "live_api": true,
+  "model": "gemini-3.1-flash-lite",
+  "cases": [
+    {
+      "file": "wayfinder-rate-confirmation-188028.pdf",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "review_id": "a11fbb17-72b5-4634-abde-ea9948550085",
+      "page_count": 3,
+      "status": "needs_review",
+      "fields": {
+        "shipment_reference": {
+          "value": "188028",
+          "page": 1,
+          "quote": "Load Number: 188028"
+        },
+        "carrier": {
+          "value": "R A C TRANSPORT LLC",
+          "page": 1,
+          "quote": "Carrier: R A C TRANSPORT LLC"
+        },
+        "pickup_location": {
+          "value": "Anheuser Busch GA 100 Busch Dr CARTERSVILLE, GA US 30120",
+          "page": 1,
+          "quote": "Anheuser Busch GA\n100 Busch Dr\nCARTERSVILLE, GA US 30120"
+        },
+        "delivery_location": {
+          "value": "BudweiserBusch Dist Co Inc 16430 Black Devine Rd. LOXLEY, AL US 36551",
+          "page": 1,
+          "quote": "BudweiserBusch Dist Co Inc\n16430 Black Devine Rd.\nLOXLEY, AL US 36551"
+        },
+        "pickup_date": {
+          "value": "9/24/2023",
+          "page": 1,
+          "quote": "Expected Date: 9/24/2023"
+        },
+        "delivery_date": {
+          "value": "9/25/2023",
+          "page": 1,
+          "quote": "Expected Date: 9/25/2023"
+        },
+        "amount": {
+          "value": "700.00",
+          "page": 3,
+          "quote": "Total Cost USD 700.00"
+        },
+        "currency": {
+          "value": "USD",
+          "page": 3,
+          "quote": "Total Cost USD 700.00"
+        }
+      },
+      "warnings": [],
+      "issues": [
+        {
+          "code": "invalid_date",
+          "field": "pickup_date",
+          "message": "wayfinder-rate-confirmation-188028.pdf: review pickup_date; expected YYYY-MM-DD."
+        },
+        {
+          "code": "invalid_date",
+          "field": "delivery_date",
+          "message": "wayfinder-rate-confirmation-188028.pdf: review delivery_date; expected YYYY-MM-DD."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 6572,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "rxo-rate-confirmation-14521900.pdf",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "review_id": "a1c2e930-0dcb-4588-8e46-23a8acad2711",
+      "page_count": 4,
+      "status": "needs_review",
+      "fields": {
+        "shipment_reference": {
+          "value": "14521900",
+          "page": 1,
+          "quote": "Load Confirmation\n14521900"
+        },
+        "carrier": {
+          "value": "R A C TRANSPORT LLC",
+          "page": 1,
+          "quote": "R A C TRANSPORT LLC"
+        },
+        "pickup_date": {
+          "value": "02/23/24",
+          "page": 2,
+          "quote": "PU 02/23/24\n16:00 -"
+        },
+        "delivery_date": {
+          "value": "02/24/24",
+          "page": 2,
+          "quote": "SO 02/24/24\n09:00 -"
+        },
+        "amount": {
+          "value": "775.00",
+          "page": 1,
+          "quote": "Total Carrier Pay $775.00"
+        }
+      },
+      "warnings": [
+        "Discarded unsupported extraction for pickup_location.",
+        "Discarded unsupported extraction for delivery_location."
+      ],
+      "issues": [
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing currency."
+        },
+        {
+          "code": "extraction_warning",
+          "field": null,
+          "message": "rxo-rate-confirmation-14521900.pdf: Discarded unsupported extraction for pickup_location."
+        },
+        {
+          "code": "extraction_warning",
+          "field": null,
+          "message": "rxo-rate-confirmation-14521900.pdf: Discarded unsupported extraction for delivery_location."
+        },
+        {
+          "code": "invalid_date",
+          "field": "pickup_date",
+          "message": "rxo-rate-confirmation-14521900.pdf: review pickup_date; expected YYYY-MM-DD."
+        },
+        {
+          "code": "invalid_date",
+          "field": "delivery_date",
+          "message": "rxo-rate-confirmation-14521900.pdf: review delivery_date; expected YYYY-MM-DD."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 2226,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "fedex-express-invoice-guide.pdf",
+      "document_kind": "invoice",
+      "http_status": 201,
+      "review_id": "b4723577-cfa7-432b-8faf-0f318da0731e",
+      "page_count": 6,
+      "status": "needs_review",
+      "fields": {},
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing rate confirmation."
+        },
+        {
+          "code": "missing_field",
+          "field": "shipment_reference",
+          "message": "fedex-express-invoice-guide.pdf: missing shipment reference."
+        },
+        {
+          "code": "missing_field",
+          "field": "carrier",
+          "message": "fedex-express-invoice-guide.pdf: missing carrier."
+        },
+        {
+          "code": "missing_field",
+          "field": "invoice_number",
+          "message": "fedex-express-invoice-guide.pdf: missing invoice number."
+        },
+        {
+          "code": "missing_field",
+          "field": "amount",
+          "message": "fedex-express-invoice-guide.pdf: missing amount."
+        },
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "fedex-express-invoice-guide.pdf: missing currency."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 8360,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    }
+  ]
+}

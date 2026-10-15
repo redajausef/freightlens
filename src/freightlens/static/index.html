@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111b2e" />
+    <title>FreightLens · Shipment reviews</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <svg
+      class="icon-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="2" />
+        <rect x="14" y="3" width="7" height="7" rx="2" />
+        <rect x="3" y="14" width="7" height="7" rx="2" />
+        <rect x="14" y="14" width="7" height="7" rx="2" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path
+          d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"
+        />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 4 4" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m-5-5 5 5-5 5" />
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24">
+        <path d="M19 12H5m5-5-5 5 5 5" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="m12 3 10 18H2L12 3Zm0 6v4m0 3v1" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="i-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 3v1" />
+      </symbol>
+      <symbol id="i-external" viewBox="0 0 24 24">
+        <path
+          d="M14 3h7v7M21 3 11 13M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"
+        />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="5" y="10" width="14" height="11" rx="2" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" />
+      </symbol>
+    </svg>
+    <a class="skip-link" href="#main">Skip to workspace</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <a class="app-brand" href="/" aria-label="FreightLens home">
+          <svg
+            class="brand-mark"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect width="32" height="32" rx="9" fill="currentColor" />
+            <path d="M9 23V9h15v4H13v3h8v3h-8v4H9Z" fill="white" />
+          </svg>
+          <span class="brand-name"
+            >FreightLens<span class="brand-period">.</span></span
+          >
+        </a>
+        <div class="workspace-switch">
+          <span class="workspace-avatar">FL</span
+          ><span
+            ><strong>Operations</strong><small>Local workspace</small></span
+          >
+        </div>
+        <p class="nav-heading">Workspace</p>
+        <nav class="app-nav" aria-label="Main navigation">
+          <button
+            id="nav-reviews"
+            aria-label="Review queue"
+            class="nav-item selected"
+            type="button"
+            aria-current="page"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg
+            ><span class="nav-label">Review queue</span
+            ><span id="nav-count" class="nav-count">—</span>
+          </button>
+          <button
+            class="nav-item"
+            type="button"
+            data-open-upload
+            aria-label="New review"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg
+            ><span class="nav-label">New review</span>
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="workspace-security">
+            <svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg
+            ><span
+              >You're in control<small>Every approval is yours.</small></span
+            >
+          </div>
+          <button
+            class="nav-item"
+            type="button"
+            data-open-guide
+            aria-label="Quick guide"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-help" /></svg
+            ><span class="nav-label">Quick guide</span>
+          </button>
+          <a
+            class="nav-item"
+            href="/docs"
+            target="_blank"
+            rel="noopener"
+            aria-label="API reference (opens in a new tab)"
+            ><svg class="icon" aria-hidden="true">
+              <use href="#i-external" /></svg
+            ><span class="nav-label"
+              >API reference<span class="sr-only">
+                (opens in a new tab)</span
+              ></span
+            ></a
+          >
+          <div class="sidebar-foot">
+            <span class="local-dot" aria-hidden="true"></span
+            ><span>Local portfolio demo</span>
+          </div>
+        </div>
+      </aside>
+      <div class="app-main">
+        <header class="topbar">
+          <div class="breadcrumb">
+            Operations <span aria-hidden="true">/</span>
+            <strong>Document control</strong>
+          </div>
+          <div class="topbar-right">
+            <span class="local-label"
+              ><span class="local-dot" aria-hidden="true"></span> Local
+              workspace</span
+            ><span class="mode-badge" id="mode">Connecting…</span>
+          </div>
+        </header>
+        <main id="main" class="content" tabindex="-1">
+          <div class="workspace-heading">
+            <div>
+              <p class="eyebrow">Document control</p>
+              <h1>Shipment reviews</h1>
+              <p>
+                Rate confirmations, invoices &amp; proof of delivery. One clear
+                decision.
+              </p>
+            </div>
+            <button class="button primary" type="button" data-open-upload>
+              <svg class="icon" aria-hidden="true"><use href="#i-plus" /></svg
+              >New review
+            </button>
+          </div>
+          <div
+            id="feedback"
+            class="feedback"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></div>
+          <div
+            id="error-feedback"
+            class="feedback-error"
+            role="alert"
+            tabindex="-1"
+          ></div>
+          <div
+            id="request-progress"
+            class="progress-indicator"
+            role="status"
+            hidden
+          >
+            <span class="progress-dot" aria-hidden="true"></span
+            ><span id="progress-label">Processing documents…</span>
+          </div>
+          <div
+            class="summary-strip"
+            role="group"
+            aria-label="Filter reviews by status"
+          >
+            <button
+              class="summary-item selected"
+              type="button"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              <span class="summary-icon all"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-file" /></svg></span
+              ><span
+                ><span class="summary-label">All reviews</span
+                ><strong id="metric-total">—</strong></span
+              ><span class="summary-caption">Latest 100 packets</span>
+            </button>
+            <button
+              class="summary-item"
+              type="button"
+              data-filter="needs_review"
+              aria-pressed="false"
+            >
+              <span class="summary-icon attention"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-alert" /></svg></span
+              ><span
+                ><span class="summary-label">Needs attention</span
+                ><strong id="metric-attention">—</strong></span
+              ><span class="summary-caption">Findings to resolve</span>
+            </button>
+            <button
+              class="summary-item"
+              type="button"
+              data-filter="ready_for_review"
+              aria-pressed="false"
+            >
+              <span class="summary-icon ready"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-clock" /></svg></span
+              ><span
+                ><span class="summary-label">Ready to review</span
+                ><strong id="metric-ready">—</strong></span
+              ><span class="summary-caption">Awaiting your decision</span>
+            </button>
+            <button
+              class="summary-item"
+              type="button"
+              data-filter="approved"
+              aria-pressed="false"
+            >
+              <span class="summary-icon approved"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-check" /></svg></span
+              ><span
+                ><span class="summary-label">Approved</span
+                ><strong id="metric-approved">—</strong></span
+              ><span class="summary-caption">Employee approvals</span>
+            </button>
+          </div>
+          <div id="workspace" class="workspace-layout">
+            <section
+              class="queue-area panel"
+              id="reviews"
+              aria-labelledby="queue-title"
+              aria-busy="true"
+            >
+              <div class="queue-toolbar">
+                <div>
+                  <h2 id="queue-title">Review queue</h2>
+                  <p id="queue-subtitle">All shipment packets</p>
+                </div>
+                <label class="search-field"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-search" /></svg
+                  ><input
+                    id="queue-search"
+                    type="search"
+                    placeholder="Search shipments…"
+                    aria-label="Find a shipment by reference or carrier"
+                /></label>
+              </div>
+              <div id="queue-loading" class="queue-state">
+                <span class="progress-dot" aria-hidden="true"></span>
+                <h3>Loading your workspace</h3>
+                <p>Getting your saved reviews…</p>
+              </div>
+              <div id="queue-failure" class="queue-state error-state" hidden>
+                <span class="state-icon"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-alert" /></svg
+                ></span>
+                <h3>Connection interrupted</h3>
+                <p>Your saved reviews are still on this device.</p>
+                <button
+                  type="button"
+                  class="button secondary"
+                  id="retry-load"
+                  data-command
+                >
+                  Retry connection
+                </button>
+              </div>
+              <div
+                class="table-scroll"
+                id="queue-table"
+                tabindex="0"
+                role="region"
+                aria-label="Shipment review queue"
+                hidden
+              >
+                <table class="queue" aria-label="Shipment document reviews">
+                  <thead>
+                    <tr>
+                      <th scope="col">Shipment</th>
+                      <th scope="col" class="route-cell">Route</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Findings</th>
+                      <th scope="col" class="date-cell">Added</th>
+                      <th scope="col"><span class="sr-only">Actions</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="queue-body"></tbody>
+                </table>
+              </div>
+              <div id="queue-empty" class="empty" hidden>
+                <span class="state-icon"
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-file" /></svg
+                ></span>
+                <h3 id="empty-title">Your queue is clear</h3>
+                <p id="empty-description">
+                  Start a review with shipment documents or explore a fictional
+                  example.
+                </p>
+                <button
+                  type="button"
+                  class="button primary"
+                  id="empty-create"
+                  data-open-upload
+                >
+                  Create a review</button
+                ><button
+                  id="clear-filters"
+                  type="button"
+                  class="button secondary"
+                  hidden
+                >
+                  Clear filters
+                </button>
+              </div>
+              <div class="queue-footnote">
+                <span id="queue-count" aria-live="polite"
+                  >Connecting to local service</span
+                ><span class="queue-footnote-note"
+                  >Select a shipment to inspect</span
+                >
+              </div>
+            </section>
+            <section
+              class="detail panel"
+              id="detail"
+              hidden
+              aria-labelledby="detail-title"
+            >
+              <div class="detail-header">
+                <div class="detail-heading">
+                  <button
+                    id="close-detail"
+                    type="button"
+                    class="icon-button"
+                    aria-label="Back to review queue"
+                  >
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-back" />
+                    </svg>
+                  </button>
+                  <div>
+                    <p class="eyebrow">Shipment review</p>
+                    <h2 id="detail-title" tabindex="-1"></h2>
+                    <p id="detail-meta"></p>
+                  </div>
+                </div>
+                <span id="detail-status" class="badge"></span>
+              </div>
+              <div
+                class="shipment-overview"
+                id="shipment-overview"
+                aria-label="Shipment overview"
+              ></div>
+              <div class="findings-section">
+                <div class="findings-heading">
+                  <h3>Findings <span id="issue-count"></span></h3>
+                  <button
+                    id="recheck"
+                    type="button"
+                    class="button secondary"
+                    data-command
+                    hidden
+                  >
+                    Recheck saved pages
+                  </button>
+                  <span class="section-hint">Verify before approval</span>
+                </div>
+                <div id="issues"></div>
+              </div>
+              <div class="documents-heading">
+                <h3>Documents &amp; evidence</h3>
+                <span class="section-hint"
+                  >Select a field to inspect its source</span
+                >
+              </div>
+              <div
+                class="document-tabs"
+                id="document-tabs"
+                role="group"
+                aria-label="Select source document"
+              ></div>
+              <div class="review-layout">
+                <div class="review-main">
+                  <div class="pane-heading">
+                    <h4>Extracted fields</h4>
+                    <button
+                      id="confirm-field"
+                      type="button"
+                      class="button secondary"
+                      data-command
+                    >
+                      Confirm currency or dates
+                    </button>
+                    <span id="field-count" class="subtle-badge"></span>
+                  </div>
+                  <div
+                    class="table-scroll"
+                    tabindex="0"
+                    role="region"
+                    aria-label="Extracted fields"
+                  >
+                    <table
+                      class="fields"
+                      aria-label="Extracted fields with source evidence"
+                    >
+                      <thead>
+                        <tr>
+                          <th scope="col">Field</th>
+                          <th scope="col">Value</th>
+                          <th scope="col">Page</th>
+                        </tr>
+                      </thead>
+                      <tbody id="fields-body"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <aside
+                  class="evidence-panel"
+                  aria-labelledby="evidence-heading"
+                >
+                  <div class="pane-heading">
+                    <h4 id="evidence-heading">Source evidence</h4>
+                    <span class="subtle-badge">Extracted text</span>
+                  </div>
+                  <p id="evidence-title" class="evidence-source">
+                    Select a value to inspect
+                  </p>
+                  <div class="evidence-excerpt">
+                    <span class="excerpt-label">Supporting quote</span>
+                    <blockquote id="evidence-quote">
+                      Supporting text appears here.
+                    </blockquote>
+                  </div>
+                  <details class="source-document" open>
+                    <summary>Read page text</summary>
+                    <pre
+                      id="evidence-page"
+                      tabindex="0"
+                      aria-label="Extracted source page text"
+                    ></pre>
+                  </details>
+                  <p class="fine-print">
+                    Textual support is not proof of accuracy. Compare with the
+                    original document before approving.
+                  </p>
+                  <span
+                    id="evidence-update"
+                    class="sr-only"
+                    role="status"
+                    aria-live="polite"
+                  ></span>
+                </aside>
+              </div>
+              <div class="review-bottom">
+                <section
+                  class="decision-panel"
+                  aria-labelledby="decision-heading"
+                >
+                  <div class="decision-heading">
+                    <h3 id="decision-heading">Your decision</h3>
+                    <span class="subtle-badge"
+                      ><svg class="icon" aria-hidden="true">
+                        <use href="#i-lock" /></svg
+                      >Human approval</span
+                    >
+                  </div>
+                  <p class="fine-print" id="approval-help"></p>
+                  <form id="review-form">
+                    <div class="decision-fields">
+                      <label for="reviewer"
+                        >Reviewed by<input
+                          id="reviewer"
+                          required
+                          minlength="2"
+                          maxlength="80"
+                          autocomplete="name"
+                          placeholder="Your name" /></label
+                      ><label for="review-note"
+                        >Review note<textarea
+                          id="review-note"
+                          required
+                          minlength="5"
+                          maxlength="1000"
+                          rows="2"
+                          placeholder="What did you check or request?"
+                        ></textarea>
+                      </label>
+                    </div>
+                    <div class="review-actions">
+                      <button
+                        type="submit"
+                        class="button secondary"
+                        data-command
+                      >
+                        Save note</button
+                      ><button
+                        id="approve"
+                        type="button"
+                        class="button primary"
+                        data-command
+                        aria-describedby="approval-help"
+                      >
+                        <svg class="icon" aria-hidden="true">
+                          <use href="#i-check" /></svg
+                        >Approve record</button
+                      ><a id="export" class="button primary" hidden
+                        >Download approved record
+                        <span aria-hidden="true">↓</span></a
+                      >
+                    </div>
+                  </form>
+                </section>
+              </div>
+              <div class="review-secondary">
+                <details class="draft-panel">
+                  <summary>
+                    <span
+                      >Clarification draft<small
+                        >Review and copy. Nothing is sent automatically.</small
+                      ></span
+                    ><span class="disclosure-icon" aria-hidden="true">+</span>
+                  </summary>
+                  <div class="draft-content">
+                    <label for="draft" class="sr-only"
+                      >Draft clarification email</label
+                    ><textarea id="draft" readonly rows="8"></textarea
+                    ><button
+                      id="copy-draft"
+                      type="button"
+                      class="button secondary"
+                    >
+                      Copy draft
+                    </button>
+                  </div>
+                </details>
+                <details class="audit-section">
+                  <summary>
+                    Review history <span id="audit-count"></span>
+                  </summary>
+                  <ol id="audit"></ol>
+                </details>
+              </div>
+            </section>
+          </div>
+          <footer>
+            <span
+              ><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg
+              >Employee approval required. No automatic payments.</span
+            ><span>Stored locally on this device</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <dialog
+      id="upload-dialog"
+      class="upload-dialog"
+      aria-labelledby="upload-title"
+      aria-describedby="upload-description"
+    >
+      <section id="upload" class="intake">
+        <div class="dialog-heading">
+          <div>
+            <span class="dialog-icon"
+              ><svg class="icon" aria-hidden="true"><use href="#i-file" /></svg
+            ></span>
+            <h2 id="upload-title">Start a shipment review</h2>
+            <p id="upload-description">
+              Add the documents for one shipment. We'll check how they line up.
+            </p>
+          </div>
+          <button
+            id="close-upload"
+            class="icon-button"
+            type="button"
+            aria-label="Close new review"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <div
+          id="dialog-feedback"
+          class="feedback"
+          role="status"
+          aria-live="polite"
+        ></div>
+        <div
+          id="dialog-error"
+          class="feedback-error"
+          role="alert"
+          tabindex="-1"
+        ></div>
+        <div
+          id="dialog-progress"
+          class="progress-indicator"
+          role="status"
+          hidden
+        >
+          <span class="progress-dot" aria-hidden="true"></span
+          ><span id="dialog-progress-label">Checking documents…</span>
+        </div>
+        <form id="upload-form" aria-describedby="upload-help">
+          <div class="upload-grid">
+            <label class="file-card"
+              ><span class="doc-icon" aria-hidden="true">RC</span
+              ><span class="file-label"
+                ><strong>Rate confirmation</strong
+                ><small>Agreed details &amp; charges</small></span
+              ><span class="file-name">Choose PDF or text file</span
+              ><input
+                name="rate_confirmation"
+                type="file"
+                accept=".pdf,.txt"
+                aria-label="Rate confirmation file"
+                aria-describedby="upload-help"
+            /></label>
+            <label class="file-card"
+              ><span class="doc-icon" aria-hidden="true">INV</span
+              ><span class="file-label"
+                ><strong>Carrier invoice</strong
+                ><small>Requested payment</small></span
+              ><span class="file-name">Choose PDF or text file</span
+              ><input
+                name="invoice"
+                type="file"
+                accept=".pdf,.txt"
+                aria-label="Carrier invoice file"
+                aria-describedby="upload-help"
+            /></label>
+            <label class="file-card"
+              ><span class="doc-icon" aria-hidden="true">POD</span
+              ><span class="file-label"
+                ><strong>Proof of delivery</strong
+                ><small>Delivery reference &amp; date</small></span
+              ><span class="file-name">Choose PDF or text file</span
+              ><input
+                name="proof_of_delivery"
+                type="file"
+                accept=".pdf,.txt"
+                aria-label="Proof of delivery file"
+                aria-describedby="upload-help"
+            /></label>
+          </div>
+          <div class="upload-footer">
+            <p id="upload-help">
+              PDF or text · 5 MB per file<br />Scanned PDFs need OCR before
+              upload.
+            </p>
+            <button class="button primary" type="submit" data-command>
+              Review documents<svg class="icon" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg>
+            </button>
+          </div>
+        </form>
+        <div class="sample-bar" id="sample-bar">
+          <div class="sample-heading">
+            <strong>Just exploring?</strong
+            ><span>Try a fictional shipment.</span>
+          </div>
+          <div class="sample-list">
+            <button type="button" data-demo="mismatch" data-command>
+              <span class="sample-symbol attention"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-alert" /></svg></span
+              ><span
+                ><strong>Charge discrepancy</strong
+                ><small>$2,000 agreed · $2,300 invoiced</small></span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg></button
+            ><button type="button" data-demo="clean" data-command>
+              <span class="sample-symbol approved"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-check" /></svg></span
+              ><span
+                ><strong>Matching paperwork</strong
+                ><small>All three documents match</small></span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg></button
+            ><button type="button" data-demo="missing" data-command>
+              <span class="sample-symbol ready"
+                ><svg class="icon" aria-hidden="true">
+                  <use href="#i-file" /></svg></span
+              ><span
+                ><strong>Missing delivery record</strong
+                ><small>Two documents. One missing.</small></span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="provider-note" id="mode-notice">
+          Connecting to the local service…
+        </p>
+      </section>
+    </dialog>
+    <dialog
+      id="guide-dialog"
+      class="guide-dialog"
+      aria-labelledby="guide-title"
+    >
+      <div class="dialog-heading">
+        <div>
+          <span class="dialog-icon"
+            ><svg class="icon" aria-hidden="true"><use href="#i-help" /></svg
+          ></span>
+          <h2 id="guide-title">A clear review, in three steps</h2>
+        </div>
+        <button
+          id="close-guide"
+          type="button"
+          class="icon-button"
+          aria-label="Close quick guide"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <ol class="guide-steps">
+        <li>
+          <strong>Add one shipment's documents</strong>
+          <p>
+            Choose New review. Upload a rate confirmation, invoice and proof of
+            delivery, or try a fictional example.
+          </p>
+        </li>
+        <li>
+          <strong>Check findings against the source</strong>
+          <p>
+            Select a shipment, then a document. Select any field to see its
+            supporting quote and extracted page text.
+          </p>
+        </li>
+        <li>
+          <strong>Record your decision</strong>
+          <p>
+            Save a note or approve a packet with no findings. Approval needs
+            your name and a note. Confirm a currency or date with source
+            evidence, or upload a new packet when documents are missing or
+            incorrect.
+          </p>
+        </li>
+      </ol>
+      <p class="fine-print">
+        This local prototype does not verify signatures or document
+        authenticity. It never sends emails or payments.
+      </p>
+    </dialog>
+    <dialog
+      id="confirmation-dialog"
+      class="confirmation-dialog"
+      aria-labelledby="confirmation-title"
+      aria-describedby="confirmation-description"
+    >
+      <div class="dialog-heading">
+        <div>
+          <h2 id="confirmation-title">Confirm a field</h2>
+          <p id="confirmation-description">
+            Record your interpretation with source evidence. The original AI
+            result is preserved and all checks run again.
+          </p>
+        </div>
+        <button
+          id="close-confirmation"
+          class="icon-button"
+          type="button"
+          aria-label="Close field confirmation"
+        >
+          ×
+        </button>
+      </div>
+      <p id="confirmation-document" class="fine-print"></p>
+      <p id="confirmation-feedback" role="status" aria-live="polite"></p>
+      <p
+        id="confirmation-error"
+        class="feedback-error"
+        role="alert"
+        tabindex="-1"
+      ></p>
+      <form id="confirmation-form">
+        <div class="confirmation-grid">
+          <label for="confirmation-field"
+            >Field<select id="confirmation-field">
+              <option value="currency">Currency</option>
+              <option value="pickup_date">Pickup date</option>
+              <option value="delivery_date">Delivery date</option>
+            </select></label
+          >
+          <label for="confirmation-value"
+            ><span id="confirmation-value-label">Confirmed value</span
+            ><input
+              id="confirmation-value"
+              required
+              maxlength="300"
+              autocomplete="off"
+          /></label>
+        </div>
+        <p id="confirmation-original" class="fine-print"></p>
+        <label for="confirmation-page"
+          >Source page<select id="confirmation-page" required></select
+        ></label>
+        <details class="confirmation-source">
+          <summary>Read selected source page</summary>
+          <pre id="confirmation-source-text" tabindex="0"></pre>
+        </details>
+        <label for="confirmation-quote"
+          >Exact supporting quote<textarea
+            id="confirmation-quote"
+            required
+            maxlength="600"
+            rows="3"
+            placeholder="Copy the printed currency/amount or date from this page."
+          ></textarea>
+        </label>
+        <div class="confirmation-grid">
+          <label for="confirmation-reviewer"
+            >Confirmed by<input
+              id="confirmation-reviewer"
+              required
+              minlength="2"
+              maxlength="80"
+              autocomplete="name"
+              placeholder="Your name"
+          /></label>
+          <label for="confirmation-note"
+            >Reason<textarea
+              id="confirmation-note"
+              required
+              minlength="5"
+              maxlength="1000"
+              rows="2"
+              placeholder="Explain how you verified the currency or full date."
+            ></textarea>
+          </label>
+        </div>
+        <p class="fine-print">
+          A dollar symbol needs your verified currency choice. A two-digit year
+          needs your explicit full year. Missing documents still block approval.
+        </p>
+        <button type="submit" class="button primary" data-command>
+          Save confirmation &amp; recheck
+        </button>
+      </form>
+    </dialog>
+  </body>
+</html>

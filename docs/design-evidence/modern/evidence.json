@@ -1,0 +1,129 @@
+{
+  "contract": "FreightLens queue-first document workbench. Cool-neutral/slate/cobalt UI; New review native dialog; compact queue plus selected review on wide screens; fields beside source text; mobile detail with Back. Preserve human and current-policy approval gates. Contract and references: docs/design.md.",
+  "targetViewports": [
+    "1440x1000",
+    "1024x900",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Browser verified first Tab/skip link to main, selected heading focus, modal Tab cycling/Escape/opener return, local modal errors/progress outside busy form, named compact-rail controls and pressed source selections. Computed foreground/background text contrast has no failures on tested queue/review/dialog surfaces after fixes, excluding decorative/disabled content. Primary actions are 44px and secondary controls generally 40px. Reduced motion shortens transitions. This is not certification."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Rendered and inspected 1440x1000,1024x900,390x844. No page-level horizontal overflow in queue/detail. Wide screen retains compact queue; narrower screens give detail full width with Back. Native mobile dialog is bounded and scrolls vertically. Long carrier, filename, quote and unbroken source tokens remain contained on desktop/mobile."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Held health response in browser route: stable loading queue and unknown counters, not false zero. Held upload: local progress, file inputs/close disabled, Escape explains that processing must finish."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "Fresh temporary SQLite queue has no records and offers Create a review. Actual status/search filtering produces No matching reviews; Clear filters restores the saved queue."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Controlled startup 503 displays Retry and recovers when route is removed. Blank upload and controlled provider 503 focus local dialog error; selected invoice.pdf remains chosen and usable after failure."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Actual fictional FL-1003 has two documents, available fields/source evidence and a missing proof-of-delivery finding. Approval stays disabled."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "Uploaded three actual clean sample PDFs, approved with name/note and completed JSON download. Saved a discrepancy note while keeping selected source document/field. Per-review unsaved drafts restore on return and never transfer to another shipment."
+    },
+    "permission": {
+      "status": "pass",
+      "evidence": "Workflow boundary: actual earlier-policy review shows dominant Recheck required, disabled approval and hidden export. Current mismatch also blocks approval. Authentication/role permissions do not exist in this local prototype and are not claimed."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x1000",
+      "artifact": "desktop.png",
+      "observation": "Final queue-first desktop; real synthetic saved packets, actual count filters and New review."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "review-detail.png",
+      "observation": "Final focus mode with compact queue and paired fields/source text; amber discrepancy finding."
+    },
+    {
+      "viewport": "1024x900",
+      "artifact": "tablet.png",
+      "observation": "Final narrow-desktop detail workspace with compact rail and Back control."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "mobile.png",
+      "observation": "Final mobile queue, two-column count filters, contained rows and New review."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "mobile-review.png",
+      "observation": "Final full-page mobile review: findings, fields, source and decision stack, approval blocked."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "upload.png",
+      "observation": "Final native New review dialog, three explicit file controls and fictional examples."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "mobile-upload.png",
+      "observation": "Final bounded mobile dialog; vertical scroll without horizontal overflow."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "loading.png",
+      "observation": "Controlled pending health response, stable loading UI and unknown counters."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "empty.png",
+      "observation": "Actual empty temporary database and Create a review action."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "error.png",
+      "observation": "Controlled503 queue failure and Retry recovery path."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "provider-error.png",
+      "observation": "Controlled provider failure inside upload dialog; selected file retained."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "upload-loading.png",
+      "observation": "Pending upload progress inside dialog and safe close guard."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "partial.png",
+      "observation": "Actual missing-POD packet with available extraction and blocked approval."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "success.png",
+      "observation": "Actual approved clean PDF packet and real JSON download action."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "permission.png",
+      "observation": "Actual legacy approval record must be rechecked under the current policy."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "long-content.png",
+      "observation": "Browser-only long carrier/filename/quote fixture contained on desktop."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "mobile-long-content.png",
+      "observation": "Browser-only unbroken long source token and carrier contained on mobile."
+    }
+  ]
+}

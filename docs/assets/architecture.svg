@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2080" height="1850" viewBox="0 0 2080 1850" role="img" aria-labelledby="title description">
+<title id="title">FreightLens system architecture</title>
+<desc id="description">ECC guides development and audit, outside the runtime. A local FastAPI application extracts and validates document text, records evidence in SQLite, and requires employee approval before JSON export. Findings or outdated policy block approval and export. A small Gemini public-PDF evaluation is recorded; Kimi is not live verified.</desc>
+<rect width="2080" height="1850" fill="#f5f4f0"/>
+<text x="64" y="43" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="650" fill="#b94b2b">FREIGHTLENS  /  SYSTEM ARCHITECTURE</text>
+<text x="64" y="83" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="50" font-weight="650" fill="#252b2a">A clear path from paperwork to approval.</text>
+<text x="64" y="148" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="400" fill="#69706b">Local portfolio prototype · One modular Python application · Human decisions</text>
+<rect x="64" y="210" width="1952" height="197" rx="8" fill="#eeede6" stroke="#dedfd8"/>
+<text x="90" y="232" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="650" fill="#b94b2b">ECC DEVELOPMENT &amp; AUDIT WORKFLOW</text>
+<text x="90" y="264" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Architecture reviewer</text>
+<text x="90" y="304" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Module boundaries, contracts, system design</text>
+<text x="755" y="264" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Python / provider reviewer</text>
+<text x="755" y="304" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Grounding, error paths, regression tests</text>
+<text x="1405" y="264" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Security reviewer</text>
+<text x="1405" y="304" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Upload boundary, data handling, approval gates</text>
+<text x="90" y="359" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Development guidance and review roles only. ECC is not a runtime dependency or an in-app agent team.</text>
+<rect x="64" y="457" width="1480" height="1080" rx="8" fill="#efeee8" stroke="#dedfd8"/>
+<text x="90" y="480" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="650" fill="#b94b2b">LOCAL RUNTIME</text>
+<text x="302" y="480" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Browser + single FastAPI modular application + SQLite</text>
+<rect x="110" y="550" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="130" y="567" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">01 / BROWSER</text>
+<text x="130" y="596" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Employee workbench</text>
+<text x="130" y="634" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Rate confirmation, invoice, POD</text>
+<text x="130" y="658" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Upload PDF / UTF-8 text packets</text>
+<text x="130" y="682" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Review values, source quotes, notes</text>
+<rect x="590" y="550" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="610" y="567" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">02 / API BOUNDARY</text>
+<text x="610" y="596" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Bounded local requests</text>
+<text x="610" y="634" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">ASGI streamed-body size limit</text>
+<text x="610" y="658" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Host + Origin checks; typed routes</text>
+<text x="610" y="682" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">api.py / middleware.py</text>
+<rect x="1070" y="550" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="1090" y="567" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">03 / APPLICATION SERVICE</text>
+<text x="1090" y="596" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Versioned packet workflow</text>
+<text x="1090" y="634" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Validate inputs; fingerprint packet</text>
+<text x="1090" y="658" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Reuse same provider / model / policy</text>
+<text x="1090" y="682" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">service.py / versions.py</text>
+<rect x="1070" y="790" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="1090" y="807" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">04 / INGESTION</text>
+<text x="1090" y="836" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Numbered page text</text>
+<text x="1090" y="874" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Bound file size, pages, text length</text>
+<text x="1090" y="898" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Reject unreadable or encrypted input</text>
+<text x="1090" y="922" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">ingestion.py · OCR not included</text>
+<rect x="590" y="790" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="610" y="807" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">05 / EXTRACTION ADAPTER</text>
+<text x="610" y="836" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">One provider per review</text>
+<text x="610" y="874" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Demo parser: offline mode</text>
+<text x="610" y="898" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Gemini / Kimi: hosted APIs</text>
+<text x="610" y="922" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">extraction.py · no model tools</text>
+<rect x="110" y="790" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="130" y="807" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">06 / OUTPUT CONTRACT</text>
+<text x="130" y="836" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Schema + source evidence</text>
+<text x="130" y="874" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Pydantic validates provider output</text>
+<text x="130" y="898" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Signed money + whole-token support</text>
+<text x="130" y="922" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Cited quote must exist on the page</text>
+<rect x="110" y="1030" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="130" y="1047" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">07 / BUSINESS RULES</text>
+<text x="130" y="1076" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Deterministic checks</text>
+<text x="130" y="1114" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Decimal amounts, currency, dates</text>
+<text x="130" y="1138" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Required fields + cross-doc conflicts</text>
+<text x="130" y="1162" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">rules.py · warnings block approval</text>
+<rect x="590" y="1030" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="610" y="1047" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">08 / SQLITE PERSISTENCE</text>
+<text x="610" y="1076" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Evidence &amp; review history</text>
+<text x="610" y="1114" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Page text, fields, findings, notes</text>
+<text x="610" y="1138" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Hashes + processing provenance</text>
+<text x="610" y="1162" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">repository.py · no original PDFs</text>
+<rect x="1070" y="1030" width="400" height="160" rx="8" fill="#eef4eb" stroke="#dedfd8"/>
+<text x="1090" y="1047" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#41644b">09 / EMPLOYEE DECISION</text>
+<text x="1090" y="1076" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Explicit approval gate</text>
+<text x="1090" y="1114" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Inspect findings and source evidence</text>
+<text x="1090" y="1138" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">No findings + current policy required</text>
+<text x="1090" y="1162" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Employee name and note recorded</text>
+<rect x="1070" y="1270" width="400" height="160" rx="8" fill="#eef4eb" stroke="#dedfd8"/>
+<text x="1090" y="1287" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#41644b">APPROVED PATH</text>
+<text x="1090" y="1316" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">JSON export</text>
+<text x="1090" y="1354" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Employee-approved record only</text>
+<text x="1090" y="1378" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Current processing policy required</text>
+<text x="1090" y="1402" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Download; no automatic delivery</text>
+<rect x="590" y="1270" width="400" height="160" rx="8" fill="#faf0e9" stroke="#dedfd8"/>
+<text x="610" y="1287" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">BLOCKED PATH</text>
+<text x="610" y="1316" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Approval / export denied</text>
+<text x="610" y="1354" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Findings or outdated policy records</text>
+<text x="610" y="1378" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Notes do not clear discrepancies</text>
+<text x="610" y="1402" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Old records remain readable</text>
+<rect x="110" y="1270" width="400" height="160" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="130" y="1287" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">RECOVERY</text>
+<text x="130" y="1316" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Clarify or replace documents</text>
+<text x="130" y="1354" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Confirm currency / dates with evidence</text>
+<text x="130" y="1378" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Or upload missing / corrected files</text>
+<text x="130" y="1402" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Original fields + reason retained</text>
+<polyline points="510,630 590,630" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="590,630 579.0,636.0 579.0,624.0" fill="#69706b"/>
+<polyline points="990,630 1070,630" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="1070,630 1059.0,636.0 1059.0,624.0" fill="#69706b"/>
+<polyline points="1270,710 1270,790" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="1270,790 1264.0,779.0 1276.0,779.0" fill="#69706b"/>
+<polyline points="1070,870 990,870" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="990,870 1001.0,864.0 1001.0,876.0" fill="#69706b"/>
+<polyline points="590,870 510,870" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="510,870 521.0,864.0 521.0,876.0" fill="#69706b"/>
+<polyline points="310,950 310,1030" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="310,1030 304.0,1019.0 316.0,1019.0" fill="#69706b"/>
+<polyline points="510,1110 590,1110" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="590,1110 579.0,1116.0 579.0,1104.0" fill="#69706b"/>
+<polyline points="990,1110 1070,1110" fill="none" stroke="#69706b" stroke-width="2"/>
+<polygon points="1070,1110 1059.0,1116.0 1059.0,1104.0" fill="#69706b"/>
+<polyline points="1400,1190 1400,1270" fill="none" stroke="#41644b" stroke-width="2"/>
+<polygon points="1400,1270 1394.0,1259.0 1406.0,1259.0" fill="#41644b"/>
+<text x="1413" y="1220" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" fill="#41644b">approve</text>
+<polyline points="1210,1190 1210,1225 790,1225 790,1270" fill="none" stroke="#b94b2b" stroke-width="2"/>
+<polygon points="790,1270 784.0,1259.0 796.0,1259.0" fill="#b94b2b"/>
+<text x="838" y="1199" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="400" fill="#b94b2b">findings / old policy</text>
+<polyline points="590,1350 510,1350" fill="none" stroke="#b94b2b" stroke-width="2"/>
+<polygon points="510,1350 521.0,1344.0 521.0,1356.0" fill="#b94b2b"/>
+<polyline points="110,1350 84,1350 84,630 110,630" fill="none" stroke="#b94b2b" stroke-width="2"/>
+<polygon points="110,630 99.0,636.0 99.0,624.0" fill="#b94b2b"/>
+<text x="110" y="1474" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="21" font-weight="400" fill="#69706b">Stored provenance: provider · model · pipeline · extraction · rules revision</text>
+<rect x="1600" y="457" width="416" height="213" rx="8" fill="#eeede6" stroke="#dedfd8"/>
+<text x="1620" y="482" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="650" fill="#b94b2b">OPTIONAL EXTERNAL BOUNDARY</text>
+<text x="1620" y="518" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="650" fill="#252b2a">Hosted extraction only</text>
+<text x="1620" y="559" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Document text leaves the device</text>
+<text x="1620" y="589" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">when a hosted mode is selected.</text>
+<text x="1620" y="626" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#69706b">No silent fallback to demo mode.</text>
+<rect x="1600" y="790" width="416" height="160" rx="8" fill="#faf0e9" stroke="#dedfd8"/>
+<text x="1620" y="807" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="650" fill="#b94b2b">ADAPTER IMPLEMENTED</text>
+<text x="1620" y="836" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Gemini / Kimi APIs</text>
+<text x="1620" y="874" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Gemini: public-PDF evaluation</text>
+<text x="1620" y="898" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">Kimi: live testing pending</text>
+<text x="1620" y="922" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">No API key in code or diagrams</text>
+<polyline points="790,950 790,992 1808,992 1808,950" fill="none" stroke="#b94b2b" stroke-width="2" stroke-dasharray="8 7"/>
+<polygon points="1808,950 1814.0,961.0 1802.0,961.0" fill="#b94b2b"/>
+<polygon points="790,950 796.0,961.0 784.0,961.0" fill="#b94b2b"/>
+<text x="1547" y="1006" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#b94b2b">request / validated response</text>
+<rect x="1600" y="1095" width="416" height="442" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="1620" y="1122" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="650" fill="#69706b">NEXT MILESTONES</text>
+<text x="1620" y="1161" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="650" fill="#252b2a">Future work only</text>
+<text x="1620" y="1223" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">01  Broader accuracy + scope tests</text>
+<text x="1620" y="1277" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">02  OCR for scanned documents</text>
+<text x="1620" y="1331" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">03  Authentication + worker jobs</text>
+<text x="1620" y="1385" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">04  Approved business integrations</text>
+<text x="1620" y="1479" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#69706b">Not part of the current runtime.</text>
+<rect x="64" y="1590" width="1952" height="173" rx="8" fill="#ffffff" stroke="#dedfd8"/>
+<text x="90" y="1615" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="650" fill="#b94b2b">SCOPE &amp; TRUST</text>
+<text x="90" y="1655" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="29" font-weight="650" fill="#252b2a">AI extracts. Python validates. Employees approve.</text>
+<text x="90" y="1703" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="400" fill="#69706b">No automatic emails or payments. No RAG, memory, autonomous agents, model tools or webhooks.</text>
+<text x="64" y="1804" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="400" fill="#69706b">FreightLens · Current local prototype architecture · PNG + editable SVG + Mermaid source</text>
+<text x="1640" y="1804" dominant-baseline="text-before-edge" font-family="Segoe UI,DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="400" fill="#69706b">Small live test; see evaluation</text>
+</svg>

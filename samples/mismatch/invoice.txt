@@ -1,0 +1,10 @@
+SYNTHETIC PORTFOLIO EXAMPLE - NO REAL SHIPMENT
+
+CARRIER INVOICE
+Shipment Reference: FL-1002
+Carrier: Atlas Demo Transport
+Pickup Location: Dallas, TX
+Delivery Location: Houston, TX
+Invoice Number: INV-FL-1002
+Amount: 2,300.00
+Currency: USD

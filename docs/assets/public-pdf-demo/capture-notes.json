@@ -1,0 +1,85 @@
+{
+  "captured_at": "2026-10-15T18:59:47.374615+00:00",
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "pipeline_revision": "2026-10-15.4",
+  "original_inference_pipeline_revision": "2026-10-15.3",
+  "capture_type": "Unmodified browser screenshots plus one direct source-PDF page rendering.",
+  "data_origin": "Actual saved live-Gemini API review results; no substituted UI data.",
+  "capture_upload_submitted": false,
+  "public_reviews_rechecked_without_new_inference": true,
+  "actual_employee_confirmations_added_during_capture": 0,
+  "additional_model_calls_for_screenshots": 0,
+  "console_errors_during_capture": [],
+  "review_ids": {
+    "wayfinder-rate-confirmation-188028.pdf": "950f87ff-6f43-4031-b77d-2f203fcbe7b6",
+    "rxo-rate-confirmation-14521900.pdf": "dfb1d76d-8f1a-4837-8766-e4c961786bf3",
+    "fedex-express-invoice-guide.pdf": "7c65b5bc-87fe-4cc6-a6d1-fc994261ad7b"
+  },
+  "images": [
+    {
+      "file": "01-live-review-queue.png",
+      "dimensions": [
+        1440,
+        1200
+      ],
+      "sha256": "7e98faca8bc7d40c1d1b5eea2dbbd252919073b8d31572f357421a2f7c799add"
+    },
+    {
+      "file": "02-upload-original-pdf.png",
+      "dimensions": [
+        700,
+        476
+      ],
+      "sha256": "f8971597cb1da6caddbda10a781b53a56db53394ff6460eda0c1a4748daff0ce"
+    },
+    {
+      "file": "03-extracted-fields-and-source.png",
+      "dimensions": [
+        1440,
+        1200
+      ],
+      "sha256": "9427d28f16b5ef301203889518ea4a3a36726dda37fd165a576e5b798655227a"
+    },
+    {
+      "file": "04-source-and-approval-gate.png",
+      "dimensions": [
+        1440,
+        1200
+      ],
+      "sha256": "9f10247b73e2fa8e01fca2540279dfaa8c014c10701b1fef363516c61714ded3"
+    },
+    {
+      "file": "05-rxo-review-findings.png",
+      "dimensions": [
+        1440,
+        1200
+      ],
+      "sha256": "3339a1830dfbbfd465cdacc4321b3401256ea55bcc6d040edeeb1a11349d3ee2"
+    },
+    {
+      "file": "06-confirm-currency-or-date.png",
+      "dimensions": [
+        700,
+        752
+      ],
+      "sha256": "aacfc53b2b60b87552d613f13626f8da84c441754f0ed0eaeb60b8ac14709e50"
+    },
+    {
+      "file": "07-guide-blocked-by-scope.png",
+      "dimensions": [
+        1440,
+        1200
+      ],
+      "sha256": "e9bf40f881a870c146c749f2ee39e965648b6afe7acb194bbfd132ed7a4f92d9"
+    },
+    {
+      "file": "original-wayfinder-page-3.png",
+      "dimensions": [
+        765,
+        990
+      ],
+      "sha256": "8e6046a1caa1cbda17ef07cab52765344d384667152990c006918cd9f84efba6"
+    }
+  ]
+}

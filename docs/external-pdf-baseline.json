@@ -1,0 +1,175 @@
+{
+  "provider": "demo",
+  "live_api": false,
+  "model": "parser-v1",
+  "cases": [
+    {
+      "file": "wayfinder-rate-confirmation-188028.pdf",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "review_id": "d097fe73-0d48-46af-910e-1d60e61a0464",
+      "page_count": 3,
+      "status": "needs_review",
+      "fields": {
+        "carrier": {
+          "value": "R A C TRANSPORT LLC",
+          "page": 1,
+          "quote": "Carrier: R A C TRANSPORT LLC"
+        }
+      },
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_field",
+          "field": "shipment_reference",
+          "message": "wayfinder-rate-confirmation-188028.pdf: missing shipment reference."
+        },
+        {
+          "code": "missing_field",
+          "field": "amount",
+          "message": "wayfinder-rate-confirmation-188028.pdf: missing amount."
+        },
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "wayfinder-rate-confirmation-188028.pdf: missing currency."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 27,
+      "processing": {
+        "provider": "demo",
+        "model": "parser-v1",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "rxo-rate-confirmation-14521900.pdf",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "review_id": "1b02352f-307a-4c80-8a07-a6decafb72ba",
+      "page_count": 4,
+      "status": "needs_review",
+      "fields": {},
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_field",
+          "field": "shipment_reference",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing shipment reference."
+        },
+        {
+          "code": "missing_field",
+          "field": "carrier",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing carrier."
+        },
+        {
+          "code": "missing_field",
+          "field": "amount",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing amount."
+        },
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing currency."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 37,
+      "processing": {
+        "provider": "demo",
+        "model": "parser-v1",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "fedex-express-invoice-guide.pdf",
+      "document_kind": "invoice",
+      "http_status": 201,
+      "review_id": "45018ece-2d07-476e-8a0d-ac46989989ba",
+      "page_count": 6,
+      "status": "needs_review",
+      "fields": {},
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing rate confirmation."
+        },
+        {
+          "code": "missing_field",
+          "field": "shipment_reference",
+          "message": "fedex-express-invoice-guide.pdf: missing shipment reference."
+        },
+        {
+          "code": "missing_field",
+          "field": "carrier",
+          "message": "fedex-express-invoice-guide.pdf: missing carrier."
+        },
+        {
+          "code": "missing_field",
+          "field": "invoice_number",
+          "message": "fedex-express-invoice-guide.pdf: missing invoice number."
+        },
+        {
+          "code": "missing_field",
+          "field": "amount",
+          "message": "fedex-express-invoice-guide.pdf: missing amount."
+        },
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "fedex-express-invoice-guide.pdf: missing currency."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 278,
+      "processing": {
+        "provider": "demo",
+        "model": "parser-v1",
+        "pipeline_revision": "2026-10-15.2",
+        "extraction_revision": "evidence-v2",
+        "rules_revision": "freight-checks-v2"
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    }
+  ]
+}

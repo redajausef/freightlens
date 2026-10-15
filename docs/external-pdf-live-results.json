@@ -1,0 +1,271 @@
+{
+  "evaluated_at": "2026-10-15T18:10:44.772364+00:00",
+  "provider": "gemini",
+  "live_api": true,
+  "model": "gemini-3.1-flash-lite",
+  "scope": "Two unrelated rate confirmations and one multi-invoice guide; no matched packet.",
+  "cases": [
+    {
+      "file": "wayfinder-rate-confirmation-188028.pdf",
+      "sha256": "214319cf1e30de49f6b79dca890e1ece375136afb61124ea376c74935fadeb5b",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "created_in_this_run": true,
+      "review_id": "950f87ff-6f43-4031-b77d-2f203fcbe7b6",
+      "page_count": 3,
+      "status": "needs_review",
+      "fields": {
+        "shipment_reference": {
+          "value": "188028",
+          "page": 1,
+          "quote": "Equipment Type: Van or Reefer 53' Load Number: 188028"
+        },
+        "carrier": {
+          "value": "R A C TRANSPORT LLC",
+          "page": 1,
+          "quote": "Carrier: R A C TRANSPORT LLC"
+        },
+        "pickup_location": {
+          "value": "Anheuser Busch GA\n100 Busch Dr\nCARTERSVILLE, GA US 30120",
+          "page": 1,
+          "quote": "Anheuser Busch GA\n100 Busch Dr\nCARTERSVILLE, GA US 30120"
+        },
+        "delivery_location": {
+          "value": "BudweiserBusch Dist Co Inc\n16430 Black Devine Rd.\nLOXLEY, AL US 36551",
+          "page": 1,
+          "quote": "BudweiserBusch Dist Co Inc\n16430 Black Devine Rd.\nLOXLEY, AL US 36551"
+        },
+        "pickup_date": {
+          "value": "9/24/2023",
+          "page": 1,
+          "quote": "Expected Date: 9/24/2023"
+        },
+        "delivery_date": {
+          "value": "9/25/2023",
+          "page": 1,
+          "quote": "Expected Date: 9/25/2023"
+        },
+        "amount": {
+          "value": "700.00",
+          "page": 3,
+          "quote": "Total Cost USD 700.00"
+        },
+        "currency": {
+          "value": "USD",
+          "page": 3,
+          "quote": "Total Cost USD 700.00"
+        }
+      },
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 2461,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.3",
+        "extraction_revision": "evidence-v3",
+        "rules_revision": "freight-checks-v3"
+      },
+      "manual_reference_checks": {
+        "shipment_reference": true,
+        "carrier": true,
+        "pickup_location": true,
+        "delivery_location": true,
+        "pickup_date": true,
+        "delivery_date": true,
+        "amount": true,
+        "currency": true
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "rxo-rate-confirmation-14521900.pdf",
+      "sha256": "2125def04753e6a719579b8cbdcaee8ed8c669c52810c5749abebb319667ec85",
+      "document_kind": "rate_confirmation",
+      "http_status": 201,
+      "created_in_this_run": true,
+      "review_id": "dfb1d76d-8f1a-4837-8766-e4c961786bf3",
+      "page_count": 4,
+      "status": "needs_review",
+      "fields": {
+        "shipment_reference": {
+          "value": "14521900",
+          "page": 1,
+          "quote": "Load Confirmation\n14521900"
+        },
+        "carrier": {
+          "value": "R A C TRANSPORT LLC",
+          "page": 1,
+          "quote": "R A C TRANSPORT LLC"
+        },
+        "pickup_location": {
+          "value": "BJ- NESTLE WATERS\n109 POLAND SPRING DR\nPOLAND SPRING, ME\n04274",
+          "page": 2,
+          "quote": "BJ- NESTLE WATERS\n109 POLAND SPRING DR\nPOLAND SPRING, ME\n04274"
+        },
+        "delivery_location": {
+          "value": "BEVERAGE DIRECT\n2500 83RD ST. SUITE 5E\nNorth Bergen, NJ 07047",
+          "page": 2,
+          "quote": "BEVERAGE DIRECT\n2500 83RD ST. SUITE 5E\nNorth Bergen, NJ 07047"
+        },
+        "pickup_date": {
+          "value": "02/23/24",
+          "page": 2,
+          "quote": "PU 02/23/24"
+        },
+        "delivery_date": {
+          "value": "02/24/24",
+          "page": 2,
+          "quote": "SO 02/24/24"
+        },
+        "amount": {
+          "value": "775.00",
+          "page": 1,
+          "quote": "Total Carrier Pay $775.00"
+        }
+      },
+      "warnings": [],
+      "issues": [
+        {
+          "code": "missing_field",
+          "field": "currency",
+          "message": "rxo-rate-confirmation-14521900.pdf: missing currency."
+        },
+        {
+          "code": "invalid_date",
+          "field": "pickup_date",
+          "message": "rxo-rate-confirmation-14521900.pdf: review pickup_date; use YYYY-MM-DD or an unambiguous slash date with a four-digit year."
+        },
+        {
+          "code": "invalid_date",
+          "field": "delivery_date",
+          "message": "rxo-rate-confirmation-14521900.pdf: review delivery_date; use YYYY-MM-DD or an unambiguous slash date with a four-digit year."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing invoice."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 3221,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.3",
+        "extraction_revision": "evidence-v3",
+        "rules_revision": "freight-checks-v3"
+      },
+      "manual_reference_checks": {
+        "shipment_reference": true,
+        "carrier": true,
+        "pickup_location": true,
+        "delivery_location": true,
+        "pickup_date": true,
+        "delivery_date": true,
+        "amount": true,
+        "currency_not_inferred_from_dollar_symbol": true
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    },
+    {
+      "file": "fedex-express-invoice-guide.pdf",
+      "sha256": "186b84adc0c3ae0781518f995595e85c93cf2f1248f86b5238c62bc26cd7d84c",
+      "document_kind": "invoice",
+      "http_status": 201,
+      "created_in_this_run": true,
+      "review_id": "7c65b5bc-87fe-4cc6-a6d1-fc994261ad7b",
+      "page_count": 6,
+      "status": "needs_review",
+      "fields": {
+        "carrier": {
+          "value": "Federal Express Europe Inc.",
+          "page": 2,
+          "quote": "Payment to:\nFederal Express Europe Inc."
+        },
+        "amount": {
+          "value": "773.70",
+          "page": 2,
+          "quote": "Amount Due\n773.70 EUR"
+        },
+        "currency": {
+          "value": "EUR",
+          "page": 2,
+          "quote": "Amount Due\n773.70 EUR"
+        }
+      },
+      "warnings": [
+        "Discarded unsupported extraction for shipment_reference.",
+        "Discarded unsupported extraction for invoice_number."
+      ],
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing rate confirmation."
+        },
+        {
+          "code": "missing_field",
+          "field": "shipment_reference",
+          "message": "fedex-express-invoice-guide.pdf: missing shipment reference."
+        },
+        {
+          "code": "missing_field",
+          "field": "invoice_number",
+          "message": "fedex-express-invoice-guide.pdf: missing invoice number."
+        },
+        {
+          "code": "extraction_warning",
+          "field": null,
+          "message": "fedex-express-invoice-guide.pdf: Discarded unsupported extraction for shipment_reference."
+        },
+        {
+          "code": "extraction_warning",
+          "field": null,
+          "message": "fedex-express-invoice-guide.pdf: Discarded unsupported extraction for invoice_number."
+        },
+        {
+          "code": "missing_document",
+          "field": null,
+          "message": "Missing proof of delivery."
+        }
+      ],
+      "elapsed_ms": 3308,
+      "processing": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "pipeline_revision": "2026-10-15.3",
+        "extraction_revision": "evidence-v3",
+        "rules_revision": "freight-checks-v3"
+      },
+      "manual_reference_checks": {
+        "multiple_examples_not_merged": false
+      },
+      "approval_status": 409,
+      "export_status": 409,
+      "duplicate_status": 200,
+      "same_review_reused": true
+    }
+  ]
+}

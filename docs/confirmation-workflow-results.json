@@ -1,0 +1,126 @@
+{
+  "pipeline_revision": "2026-10-15.4",
+  "new_model_calls": 0,
+  "saved_public_reviews": [
+    {
+      "id": "7c65b5bc-87fe-4cc6-a6d1-fc994261ad7b",
+      "file": "fedex-express-invoice-guide.pdf",
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null
+        },
+        {
+          "code": "unsupported_document_scope",
+          "field": null
+        },
+        {
+          "code": "missing_document",
+          "field": null
+        }
+      ],
+      "original_fields_preserved": true,
+      "employee_confirmations_added": 0
+    },
+    {
+      "id": "dfb1d76d-8f1a-4837-8766-e4c961786bf3",
+      "file": "rxo-rate-confirmation-14521900.pdf",
+      "issues": [
+        {
+          "code": "missing_field",
+          "field": "currency"
+        },
+        {
+          "code": "invalid_date",
+          "field": "pickup_date"
+        },
+        {
+          "code": "invalid_date",
+          "field": "delivery_date"
+        },
+        {
+          "code": "missing_document",
+          "field": null
+        },
+        {
+          "code": "missing_document",
+          "field": null
+        }
+      ],
+      "original_fields_preserved": true,
+      "employee_confirmations_added": 0
+    },
+    {
+      "id": "950f87ff-6f43-4031-b77d-2f203fcbe7b6",
+      "file": "wayfinder-rate-confirmation-188028.pdf",
+      "issues": [
+        {
+          "code": "missing_document",
+          "field": null
+        },
+        {
+          "code": "missing_document",
+          "field": null
+        }
+      ],
+      "original_fields_preserved": true,
+      "employee_confirmations_added": 0
+    }
+  ],
+  "isolated_rxo_confirmation_test": {
+    "simulation_only": true,
+    "actual_saved_public_record_changed": false,
+    "findings_before": 5,
+    "findings_after": 2,
+    "confirmations": [
+      {
+        "at": "2026-10-15T18:52:50.229950+00:00",
+        "reviewer": "Automated demonstration",
+        "note": "Simulated employee interpretation for an isolated test only; not a verified carrier billing instruction.",
+        "document_id": "500d022d-98eb-4a48-8bd2-f9689bd8b850",
+        "field": "currency",
+        "original_value": null,
+        "previous_value": null,
+        "value": "USD",
+        "page": 1,
+        "quote": "Total Carrier Pay $775.00"
+      },
+      {
+        "at": "2026-10-15T18:52:50.241794+00:00",
+        "reviewer": "Automated demonstration",
+        "note": "Simulated employee interpretation for an isolated test only; not a verified carrier billing instruction.",
+        "document_id": "500d022d-98eb-4a48-8bd2-f9689bd8b850",
+        "field": "pickup_date",
+        "original_value": "02/23/24",
+        "previous_value": "02/23/24",
+        "value": "2024-02-23",
+        "page": 2,
+        "quote": "PU 02/23/24"
+      },
+      {
+        "at": "2026-10-15T18:52:50.252980+00:00",
+        "reviewer": "Automated demonstration",
+        "note": "Simulated employee interpretation for an isolated test only; not a verified carrier billing instruction.",
+        "document_id": "500d022d-98eb-4a48-8bd2-f9689bd8b850",
+        "field": "delivery_date",
+        "original_value": "02/24/24",
+        "previous_value": "02/24/24",
+        "value": "2024-02-24",
+        "page": 2,
+        "quote": "SO 02/24/24"
+      }
+    ],
+    "remaining_findings": [
+      "Missing invoice.",
+      "Missing proof of delivery."
+    ],
+    "original_ai_fields_preserved": true,
+    "approval_status": 409
+  },
+  "actual_fedex_pdf_scope_test": {
+    "page_count": 6,
+    "extraction_status": "skipped_scope",
+    "scope_blocked": true,
+    "provider_not_called": true
+  }
+}

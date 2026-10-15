@@ -1,7 +1,17 @@
 # Local verification
 
 Verified on 2026-10-15 on Windows, Python 3.14. The pinned package environment is in
-`requirements-dev.lock`. These are local results; GitHub Actions has not run yet.
+`requirements-dev.lock`. The table records local results; Linux CI results are linked below.
+
+## GitHub Actions
+
+[The first published CI run](https://github.com/redajausef/freightlens/actions/runs/38795050974)
+passed on `ubuntu-latest` with Python 3.11 and 3.14 at commit
+`b184cb87b8612eec783f43231124780b5f3e0415`. Both jobs passed dependency installation,
+editable installation, Ruff lint/format, Pyright and the pytest coverage gate. The README
+badge links to the latest workflow status; this link preserves the recorded run's evidence.
+
+## Local checks
 
 | Check | Result |
 |---|---|
@@ -104,5 +114,5 @@ See [the ECC audit](architecture-audit.md) for the reproduced failure mechanisms
 
 Line coverage is not AI extraction accuracy. Three simple synthetic templates are workflow
 fixtures, not a representative logistics dataset. Live model extraction quality, cost, latency,
-prompt-injection robustness across adversarial documents, Linux execution, production load,
+prompt-injection robustness across adversarial documents, production load,
 and real business impact still need their own evidence.

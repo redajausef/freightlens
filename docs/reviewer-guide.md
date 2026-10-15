@@ -49,8 +49,8 @@ See the [architecture](architecture.md) for routes and storage, and the
 
 ## 4. Assess reliability and scope
 
-[Local verification](verification.md) records the automated and browser checks. GitHub CI
-is configured but has not run yet. Reviewer names are self-reported; this is a single-user
+[Verification](verification.md) records local automated/browser checks and successful Linux
+GitHub CI for Python 3.11 and 3.14. Reviewer names are self-reported; this is a single-user
 local prototype. Scans need OCR, source quotes do not prove semantic correctness, and no
 external business actions are executed. The [roadmap](roadmap.md) separates implemented
 features from future work.

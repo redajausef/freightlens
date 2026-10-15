@@ -68,8 +68,9 @@ python3 -m venv .venv
 
 Open **http://127.0.0.1:8765**. Interactive API documentation is at `/docs`.
 The default mode is an offline labeled-field parser; it makes no AI requests.
-Windows/Python 3.14 was tested locally. Linux CI is configured for Python 3.11 and 3.14,
-but has not run on GitHub yet. For runtime-only installation, use `pip install -e .` instead
+Windows/Python 3.14 was tested locally. Linux GitHub Actions checks also passed for
+Python 3.11 and 3.14 ([recorded run](https://github.com/redajausef/freightlens/actions/runs/38795050974)).
+For runtime-only installation, use `pip install -e .` instead
 of installing the development dependencies.
 
 Choose **New review** and try a built-in fictional packet, or upload the corresponding

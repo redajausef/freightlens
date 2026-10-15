@@ -1,5 +1,7 @@
 # FreightLens
 
+[![Checks](https://github.com/redajausef/freightlens/actions/workflows/ci.yml/badge.svg)](https://github.com/redajausef/freightlens/actions/workflows/ci.yml)
+
 **AI-assisted freight document review, with source evidence and employee approval.**
 
 FreightLens helps an operations employee review a shipment's rate confirmation, invoice

@@ -32,6 +32,6 @@
 - [ ] Add authenticated users and roles before hosted multi-user access.
 - [ ] Add bounded worker jobs, parser process limits, operational metrics and retention controls.
 - [ ] Record a three-minute English walkthrough and practice a supervised live code change.
-- [ ] Create a GitHub repository and publish the reviewed code when requested.
+- [x] Publish the reviewed code to [GitHub](https://github.com/redajausef/freightlens).
 
 Keep the company knowledge assistant as a later project. Complete and measure this workflow first.

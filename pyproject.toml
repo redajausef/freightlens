@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "reportlab>=4,<6", "pillow>=11,<13", "pyright>=1.1,<2"]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "reportlab>=4,<6", "pillow>=11,<14", "pyright>=1.1,<2"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -9,7 +9,7 @@ description = "Evidence-backed freight document checks with a human review gate"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "pydantic>=2.10,<3",
-  "python-multipart>=0.0.20,<1", "pypdf>=6.1,<7", "httpx>=0.28,<1", "python-dotenv>=1,<2",
+  "python-multipart>=0.0.20,<1", "pypdf>=6.1,<8", "httpx>=0.28,<1", "python-dotenv>=1,<2",
 ]
 
 [project.optional-dependencies]
